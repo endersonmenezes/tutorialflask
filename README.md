@@ -1,11 +1,11 @@
 # Tutorial Flask on Heroku
 
-## Como começar
+## Como Começar
 
-## Como testar
+## Como Testar
 
-## Como build
+## Como Build
 
-## Visualizando em produção
+## Visualizando em Produção
 
 ## Contribuidores
