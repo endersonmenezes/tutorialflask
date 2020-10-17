@@ -8,4 +8,4 @@
 
 ## Visualizando em produção
 
-## Colaboradores
+## Contribuidores
