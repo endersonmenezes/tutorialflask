@@ -34,6 +34,8 @@ def api_wikipedia():
     if search:
         api_wikipedia = 'https://pt.wikipedia.org/wiki/{}'.format(search)
         r_api = requests.get(api_wikipedia)
+        if r_api.status_code != 200:
+            return jsonify({'detail': 'Não conseguimos encontrar nada com o parametro indicado.'})
         r_api_bs = BeautifulSoup(r_api.text, 'html.parser')
         title = r_api_bs.find(id='firstHeading')
         body = r_api_bs.find(id='bodyContent')
