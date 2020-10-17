@@ -2,9 +2,23 @@ import os
 
 from flask import Flask, jsonify, render_template
 
+import requests
+
 
 app = Flask(__name__)
 
+
+@app.route("/dolar")
+def api_dolar():
+    """
+    Rota que devolve a cotação do dolar!
+    :return: jsonify
+    """
+    api_finance = 'https://api.hgbrasil.com/finance'
+    r_api = requests.get(api_finance)
+    r_api_data = r_api.json()
+    dolar_value = r_api_data['results']['currencies']['USD']['buy']
+    return jsonify({'dolar': dolar_value})
 
 @app.route("/json")
 def json_example():
