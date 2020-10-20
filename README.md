@@ -5,6 +5,9 @@
 - Capturando Dados com Requests/BeautifulSoup
 ```
 http://localhost:5000/wikipedia
+
+Exemplos:
+http://localhost:5000/wikipedia?search=STAR_WARS
 ```
     
 - Exemplo retorno em HTML
@@ -22,6 +25,13 @@ http://localhost:5000/dolar
 - Exemplo utilizando Banco de Dados
 ``` 
 http://localhost:5000/bd
+
+Exemplos:
+- Visualize o banco.
+    http://localhost:5000/bd?method=get
+
+- Adicione dados ao banco, e delete quando atingir um limite.
+    http://localhost:5000/bd?method=add&email=emaildeexemplo@exemplo.com
 ```
 
 ## Como Começar
