@@ -71,6 +71,7 @@ Você já se encontra preparado para rodar esse servidor!
 - [Adicione nos Add-ons](https://elements.heroku.com/addons/heroku-postgresql) um banco de dados Postgresql.
 - Acesse o 'Run Console' no menu superior direito do projeto.
 - Rode o comando 'python manage.py db upgrade'
+
 ## Outras informações
 
 - Comandos para administrar o banco de dados;
