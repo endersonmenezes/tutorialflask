@@ -34,7 +34,7 @@ Exemplos:
     http://localhost:5000/bd?method=add&email=emaildeexemplo@exemplo.com
 ```
 
-## Como Começar
+## Testes Locais
 
 Para testar e visualizar o projeto localmente será necessário que você tenha o Git instalado, e clone o projeto.
 ```
@@ -61,6 +61,16 @@ Você já se encontra preparado para rodar esse servidor!
 (flaskteste) python manage.py runserver
 ```
 
+## Como subir isso no Heroku.
+
+- [Crie uma conta](https://signup.heroku.com/), ou entre no Heroku.
+- Crie ou acesse o seu projeto.
+- Faça um fork desse reposótorio. 
+- Selecione no Heroku, para a máquina executar o código do seu Fork.
+- Após selecionado e configurado o Github com o Heroku, realize um deploy manual e/ou configure os seus deploys automáticos.
+- [Adicione nos Add-ons](https://elements.heroku.com/addons/heroku-postgresql) um banco de dados Postgresql.
+- Acesse o 'Run Console' no menu superior direito do projeto.
+- Rode o comando 'python manage.py db upgrade'
 ## Outras informações
 
 - Comandos para administrar o banco de dados;
