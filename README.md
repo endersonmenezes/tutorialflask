@@ -36,6 +36,7 @@ http://localhost:5000/bd
 
 - Como testar localmente;
 - Comandos para administrar o banco de dados;
+- Adicionar o postgres no Heroku - [Link](https://elements.heroku.com/addons/heroku-postgresql)
 
 ## Contribuidores
 
