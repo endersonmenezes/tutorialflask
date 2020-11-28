@@ -65,7 +65,11 @@ def json_example():
     Rota da Página Inicial!
     :return: Jsonify
     """
-    return jsonify({'detail': 'Seja bem vindo a Orbital!'})
+    return jsonify({'detail': 'Seja bem vindo ao Tutorial de Flask!',
+                    'desenvolvedores': [
+                        'Enderson Menezes',
+                        'Ana Maganha',
+                    ]})
 
 
 @app.route("/html")
