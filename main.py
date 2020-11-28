@@ -29,6 +29,18 @@ def api_dolar():
     return jsonify({'dolar': dolar_value})
 
 
+@app.route("/euro")
+def api_euro():
+    """
+
+    """
+    api_finance = 'https://api.exchangeratesapi.io/latest'
+    r_api = requests.get(api_finance)
+    r_api_data = r_api.json()
+    euro_value = r_api_data['rates']['BRL']
+    return jsonify({'euro': euro_value})
+
+
 @app.route("/wikipedia")
 def api_wikipedia():
     """
@@ -36,26 +48,33 @@ def api_wikipedia():
     :return:  jsonify
     """
     search = flask_request.args.get('search', None)
+    search = search.split(',')
+    data = []
     url = flask_request.url
     if search:
-        api_wikipedia = 'https://pt.wikipedia.org/wiki/{}'.format(search)
-        r_api = requests.get(api_wikipedia)
-        if r_api.status_code != 200:
-            return jsonify({'detail': 'Não conseguimos encontrar nada com o parametro indicado.'})
-        r_api_bs = BeautifulSoup(r_api.text, 'html.parser')
-        title = r_api_bs.find(id='firstHeading')
-        body = r_api_bs.find(id='bodyContent')
-        div_class_table = r_api_bs.find_all('div', attrs={'class': 'mw-parser-output'})
-        div_class_table = div_class_table[0]
-        p_from_table = div_class_table.find('p')
-        return jsonify({
-            'titulo': title.text,
-            'corpo': p_from_table.text,
-        })
+        for argument in search:
+            search_index = search.index(argument)
+            api_wikipedia = 'https://pt.wikipedia.org/wiki/{}'.format(argument)
+            r_api = requests.get(api_wikipedia)
+            if r_api.status_code != 200:
+                return jsonify({'detail': 'Não conseguimos encontrar nada com o parametro indicado.'})
+            r_api_bs = BeautifulSoup(r_api.text, 'html.parser')
+            title = r_api_bs.find(id='firstHeading')
+            body = r_api_bs.find(id='bodyContent')
+            div_class_table = r_api_bs.find_all('div', attrs={'class': 'mw-parser-output'})
+            div_class_table = div_class_table[0]
+            p_from_table = div_class_table.find('p')
+            data.append({
+                'titulo': title.text,
+                'description': p_from_table.text,
+                'index': search_index,
+            })
+        return jsonify(data)
     else:
         return jsonify({
             'detail': 'Erro, você precisa informar um parametro de busca!',
-            'example': '{}?search=<SUA_BUSCA_AQUI>'.format(url)
+            'example': '{}?search=<SUA_BUSCA_AQUI>'.format(url),
+            'detail2': 'Você pode inserir varias buscas, separando por virgula.'
         })
 
 
@@ -138,6 +157,7 @@ def home():
     """
     return "<a href='/json'> Clique aqui para ver um exemplo em Json </a> <br>" \
            "<a href='/html'> Clique aqui para ver um exemplo em HTML </a> <br>" \
+           "<a href='/euro'> Clique aqui para ver a cotação do Euro </a> <br>" \
            "<a href='/dolar'> Clique aqui para ver a cotação do Dolar </a> <br>" \
            "<a href='/wikipedia'> Clique aqui para ver um exemplo consumindo dados do Wikipedia! </a> <br>" \
            "<a href='/bd'> Clique aqui para ver um exemplo em Banco de Dados </a> <br>"
