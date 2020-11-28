@@ -132,7 +132,8 @@ def bd():
                     'email_added': email,
                 })
         else:
-            return jsonify({'detail': 'Você precisa enviar um e-mail no parametro email'})
+            return jsonify({'detail': 'Você precisa enviar um e-mail no parametro email',
+                            'example': '/bd?method=add&email=<DIGITE_SEU_EMAIL>'})
     elif method == 'get':
         emails = Teste.query.all()
         data_return = []
@@ -145,7 +146,10 @@ def bd():
     else:
         return jsonify({
             'detail': 'Você precisa enviar um metódo válido para está requisição.',
-            'available': 'add|get',
+            'available': [
+                '/bd?method=get',
+                '/bd?method=add',
+            ],
         })
 
 
